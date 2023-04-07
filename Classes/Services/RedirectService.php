@@ -1,4 +1,5 @@
 <?php
+
 namespace NextBox\Neos\UrlShortener\Services;
 
 use GuzzleHttp\Psr7\ServerRequest;

@@ -1,17 +1,17 @@
 <?php
+
 namespace NextBox\Neos\UrlShortener\Controller;
 
 use Neos\ContentRepository\Domain\Model\NodeInterface;
 use Neos\ContentRepository\Exception\PageNotFoundException;
-use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Mvc\Exception\StopActionException;
 use Neos\Neos\Service\LinkingService;
 use NextBox\Neos\UrlShortener\Services\RedirectService;
 
 class RedirectController extends ActionController
 {
-
     /**
      * @Flow\Inject
      * @var LinkingService
