@@ -1,0 +1,11 @@
+privilegeTargets:
+  'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+    'NextBox.Neos.UrlShortener:Redirect':
+      matcher: 'method(NextBox\Neos\UrlShortener\Controller\RedirectController->(?!initialize).*Action())'
+
+roles:
+  'Neos.Flow:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'NextBox.Neos.UrlShortener:Redirect'
+        permission: GRANT

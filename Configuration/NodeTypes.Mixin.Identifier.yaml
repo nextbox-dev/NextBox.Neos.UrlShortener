@@ -1,0 +1,10 @@
+'NextBox.Neos.UrlShortener:Identifier':
+  abstract: true
+  properties:
+    urlShortIdentifier:
+      type: string
+      ui:
+        label: 'URL Short Identifier'
+        reloadIfChanged: true
+        inspector:
+          group: 'document'

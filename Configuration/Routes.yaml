@@ -1,0 +1,10 @@
+#-
+#  name: 'Redirect for default'
+#  uriPattern: 'short/{shortIdentifier}'
+#  defaults:
+#    '@package': 'NextBox.Neos.UrlShortener'
+#    '@controller': 'Redirect'
+#    '@action': 'redirectToPage'
+#    'shortType': 'default'
+#  appendExceedingArguments: false
+#  httpMethods: ['GET']

@@ -1,0 +1,7 @@
+NextBox:
+  Neos:
+    UrlShortener:
+      shortTypes:
+        'default':
+          nodeType: 'NextBox.Neos.UrlShortener:Identifier'
+          property: 'urlShortIdentifier'

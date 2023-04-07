@@ -1,0 +1,14 @@
+{
+    "name": "nextbox/neos-urlshortener",
+    "type": "neos-plugin",
+    "description": "NextBox Neos url shortener",
+    "license": "GPL-3.0-only",
+    "require": {
+        "neos/neos": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "NextBox\\Neos\\UrlShortener\\": "Classes"
+        }
+    }
+}
