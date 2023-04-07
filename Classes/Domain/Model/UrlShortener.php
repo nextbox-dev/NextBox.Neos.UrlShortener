@@ -1,4 +1,5 @@
 <?php
+
 namespace NextBox\Neos\UrlShortener\Domain\Model;
 
 use Doctrine\ORM\Mapping as ORM;
