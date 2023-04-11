@@ -29,7 +29,7 @@ class UrlShortener
     protected string $shortType = 'default';
 
     /**
-     * @ORM\OneToOne(orphanRemoval=true)
+     * @ORM\ManyToOne
      * @var NodeData
      */
     protected NodeData $node;

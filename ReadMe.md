@@ -12,6 +12,7 @@ Create a new `Routes.yaml` with the following content:
 
 ```yaml
 # Configuration/Routes.yaml
+
 -
   name: 'Redirect for default'
   uriPattern: 'short/{shortIdentifier}' # replace `short` with your preferences
@@ -34,6 +35,8 @@ If you want to have different path names for url shortening than you can create 
 
 'Foo.Bar:ProductIdentifier': # change with your name
   abstract: true
+  superTypes:
+    'NextBox.Neos.UrlShortener:BaseIdentifier': true
   properties:
     productId: # you can change the property name individually
       type: string

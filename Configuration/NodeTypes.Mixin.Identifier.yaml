@@ -1,5 +1,7 @@
 'NextBox.Neos.UrlShortener:Identifier':
   abstract: true
+  superTypes:
+    'NextBox.Neos.UrlShortener:BaseIdentifier': true
   properties:
     urlShortIdentifier:
       type: string
