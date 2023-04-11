@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.0](https://github.com/nextbox-dev/NextBox.Neos.UrlShortener/compare/0.2.0...1.0.0) (2023-04-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* dropped support of attaching a resource
+
+### Features
+
+* remove resource from model ([9d986e8](https://github.com/nextbox-dev/NextBox.Neos.UrlShortener/commit/9d986e8ad9564466498a0f409b43715952ebe7de))
+
+
+### Bug Fixes
+
+* update persistence of new object ([5dac7d6](https://github.com/nextbox-dev/NextBox.Neos.UrlShortener/commit/5dac7d66b2184588243dee14dff20499bc7d215d))
+
 ## [0.2.0](https://github.com/nextbox-dev/NextBox.Neos.UrlShortener/compare/0.1.0...0.2.0) (2023-04-11)
 
 
