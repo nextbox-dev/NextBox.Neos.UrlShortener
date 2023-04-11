@@ -46,7 +46,7 @@ class BackendService
             $nodeTypeName = $setting['nodeType'];
             $propertyName = $setting['property'];
 
-            $this->handle($node, $shortType, $nodeTypeName, $propertyName);
+            $this->handleUrlShortener($node, $shortType, $nodeTypeName, $propertyName);
         }
     }
 
@@ -59,28 +59,23 @@ class BackendService
      * @param string $propertyName
      * @return UrlShortener|null
      */
-    protected function handle(NodeInterface $node, string $shortType, string $nodeTypeName, string $propertyName): ?UrlShortener
+    protected function handleUrlShortener(NodeInterface $node, string $shortType, string $nodeTypeName, string $propertyName): ?UrlShortener
     {
         $propertyValue = $node->hasProperty($propertyName) ? $node->getProperty($propertyName) : null;
 
         if ($node->getNodeType()->isOfType($nodeTypeName) && $propertyValue) {
             $urlShortener = $this->urlShortenerRepository->findOneByNodeDataAndShortType($node->getNodeData(), $shortType);
-            $newObject = false;
 
             if (!$urlShortener instanceof UrlShortener) {
                 $urlShortener = new UrlShortener();
                 $urlShortener->setNode($node->getNodeData());
                 $urlShortener->setShortType($shortType);
-                $newObject = true;
+                $this->urlShortenerRepository->add($urlShortener);
             }
 
             $urlShortener->setShortIdentifier($propertyValue);
 
-            if ($newObject) {
-                $this->urlShortenerRepository->add($urlShortener);
-            } else {
-                $this->urlShortenerRepository->update($urlShortener);
-            }
+            $this->urlShortenerRepository->update($urlShortener);
 
             return $urlShortener;
         }
