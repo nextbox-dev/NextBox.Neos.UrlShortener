@@ -10,7 +10,6 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\ActionRequestFactory;
 use Neos\Flow\Mvc\Routing\UriBuilder;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
-use Neos\Neos\Controller\CreateContentContextTrait;
 use NextBox\Neos\UrlShortener\Domain\Model\UrlShortener;
 use NextBox\Neos\UrlShortener\Domain\Repository\UrlShortenerRepository;
 
@@ -19,7 +18,6 @@ use NextBox\Neos\UrlShortener\Domain\Repository\UrlShortenerRepository;
  */
 class RedirectService
 {
-    use CreateContentContextTrait;
 
     /**
      * @Flow\Inject
@@ -45,6 +43,12 @@ class RedirectService
      */
     protected $persistenceManager;
 
+    /**
+     * @Flow\Inject
+     * @var BaseNodeServiceInterface
+     */
+    protected $baseNodeService;
+
 
     /**
      * Get a document node with an url-short-identifier
@@ -59,16 +63,15 @@ class RedirectService
         $urlShort = $this->urlShortenerRepository->findOneByShortIdentifierAndShortType($shortIdentifier, $shortType);
 
         if ($urlShort instanceof UrlShortener) {
-            return $this->getNodeFromNodeData($urlShort->getNode());
+            return $this->getNodeFromNodeData($urlShort->getNode(), $shortType);
         }
 
         $nodeType = $this->getNodeTypeOfType($shortType);
         $propertyName = $this->getPropertyNameOfType($shortType);
-        $contentContext = $this->createContentContext('live');
-        $siteNode = $contentContext->getCurrentSiteNode();
+        $baseNode = $this->baseNodeService->getBaseNode($shortType, $urlShort->getNode());
 
-        $node = (new FlowQuery([$siteNode]))
-            ->find('[instanceof ' . $nodeType . '][' . $propertyName . '="' . $shortIdentifier . '"]')
+        $node = (new FlowQuery([$baseNode]))
+            ->find('[instanceof ' . $nodeType . '][' . $propertyName . '=' . $shortIdentifier . ']')
             ->get(0);
 
         if ($node instanceof NodeInterface) {
@@ -96,6 +99,7 @@ class RedirectService
     public function createShortUri(string $shortIdentifier, string $shortType = 'default'): string
     {
         $_SERVER['FLOW_REWRITEURLS'] = 1;
+
         $uriBuilder = new UriBuilder();
         $httpRequest = ServerRequest::fromGlobals();
         $request = $this->actionRequestFactory->createActionRequest($httpRequest);
@@ -149,15 +153,12 @@ class RedirectService
      * Get the live node from node data
      *
      * @param NodeData $nodeData
+     * @param string $shortType
      * @return NodeInterface|null
-     * @throws \Neos\Eel\Exception
      */
-    protected function getNodeFromNodeData(NodeData $nodeData): ?NodeInterface
+    protected function getNodeFromNodeData(NodeData $nodeData, string $shortType = 'default'): ?NodeInterface
     {
-        $contentContext = $this->createContentContext('live');
-        $siteNode = $contentContext->getCurrentSiteNode();
-
-        return (new FlowQuery([$siteNode]))
+        return (new FlowQuery([$this->baseNodeService->getBaseNode($shortType, $nodeData)]))
             ->find('#' . $nodeData->getIdentifier())
             ->get(0);
     }

@@ -58,6 +58,7 @@ NextBox:
         'product': # change the name of the type
           nodeType: 'Foo.Bar:ProductIdentifier' # change the NodeType name to the new created Mixin or to the existing NodeType
           property: 'productId' # the property name of the identification - this field must be globally unique for the used Mixin
+          rootNodePath: '/sites/siteOne' # optional, the base path for the Flow Query to search for the nodes 
 ```
 
 3. Create a route:

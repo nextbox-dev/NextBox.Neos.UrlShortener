@@ -1,2 +1,5 @@
 'NextBox\Neos\UrlShortener\Services\BackendServiceInterface':
   className: 'NextBox\Neos\UrlShortener\Services\BackendService'
+
+'NextBox\Neos\UrlShortener\Services\BaseNodeServiceInterface':
+  className: 'NextBox\Neos\UrlShortener\Services\BaseNodeService'
