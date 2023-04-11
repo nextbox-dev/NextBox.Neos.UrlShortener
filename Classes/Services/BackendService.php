@@ -75,7 +75,6 @@ class BackendService
             }
 
             $urlShortener->setShortIdentifier($propertyValue);
-            $urlShortener->setResource(null);
 
             if ($newObject) {
                 $this->urlShortenerRepository->add($urlShortener);
