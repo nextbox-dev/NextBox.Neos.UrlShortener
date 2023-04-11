@@ -4,7 +4,7 @@
       "release-type": "simple",
       "include-v-in-tag": false,
       "draft": false,
-      "prerelease": true,
+      "prerelease": false,
       "bumpMinorPreMajor": false,
       "bumpPatchForMinorPreMajor": false,
       "changelogPath": "CHANGELOG.md",
