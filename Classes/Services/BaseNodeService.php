@@ -27,10 +27,10 @@ class BaseNodeService implements BaseNodeServiceInterface
      * Get the base node
      *
      * @param string $shortType
-     * @param NodeData $targetNode
+     * @param NodeData|null $targetNode
      * @return NodeInterface
      */
-    public function getBaseNode(string $shortType, NodeData $targetNode): NodeInterface
+    public function getBaseNode(string $shortType, ?NodeData $targetNode = null): NodeInterface
     {
         $contentContext = $this->createContentContext('live');
         $baseNode = $contentContext->getCurrentSiteNode();

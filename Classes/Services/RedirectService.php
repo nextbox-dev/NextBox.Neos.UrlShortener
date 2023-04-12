@@ -90,6 +90,25 @@ class RedirectService
     }
 
     /**
+     * Get all nodes of a short type
+     *
+     * @param string $shortType
+     * @return array<NodeInterface>
+     */
+    public function getNodesByShortType(string $shortType = 'default', int $offset = 0, int $limit = 999999): array
+    {
+        $nodeType = $this->getNodeTypeOfType($shortType);
+
+        $baseNode = $this->baseNodeService->getBaseNode($shortType, null);
+
+        return (new FlowQuery([$baseNode]))
+            ->find('[instanceof ' . $nodeType . ']')
+            ->sort('title', 'ASC')
+            ->slice($offset, $limit)
+            ->get();
+    }
+
+    /**
      * Create the short uri for a short identifier and a nodetype
      *
      * @param string $shortIdentifier
