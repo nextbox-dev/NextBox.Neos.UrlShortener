@@ -18,7 +18,6 @@ use NextBox\Neos\UrlShortener\Domain\Repository\UrlShortenerRepository;
  */
 class RedirectService
 {
-
     /**
      * @Flow\Inject
      * @var UrlShortenerRepository
