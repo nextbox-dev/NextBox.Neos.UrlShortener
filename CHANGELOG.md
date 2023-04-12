@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/nextbox-dev/NextBox.Neos.UrlShortener/compare/1.0.0...1.1.0) (2023-04-12)
+
+
+### Features
+
+* Add support for root_path and create service for base node ([539f6cb](https://github.com/nextbox-dev/NextBox.Neos.UrlShortener/commit/539f6cb144f5795817358a6933548f432a2920e2))
+* Create init Command ([e0f320d](https://github.com/nextbox-dev/NextBox.Neos.UrlShortener/commit/e0f320da24b0064422be6d415e3008e252b71c19))
+
 ## [1.0.0](https://github.com/nextbox-dev/NextBox.Neos.UrlShortener/compare/0.2.0...1.0.0) (2023-04-11)
 
 
